@@ -50,6 +50,7 @@ Run Docker Compose commands from the repository root:
 
 ## Boundaries
 
+- Never create a Git commit unless the user explicitly asks you to commit.
 - Never edit a merged migration. Add a new revision for later schema changes.
 - Never commit `.env` files, credentials, local SQLite databases, or `DEV.md`/`DEV.MD`. Version only sanitized environment templates.
 - Do not add dependencies without approval. For approved changes, use `uv` and update both `pyproject.toml` and `uv.lock`.
