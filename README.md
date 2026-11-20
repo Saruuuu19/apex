@@ -31,7 +31,7 @@ It's also the **project that ties together everything I'm learning**: FastAPI ba
 
 | Layer | Current | Planned |
 |-------|---------|---------|
-| **Backend** | FastAPI · SQLAlchemy · Pydantic · Alembic configuration | Initial database migration |
+| **Backend** | FastAPI · SQLAlchemy · Pydantic · Alembic migrations | API routes for core features |
 | **Database** | SQLite configured | PostgreSQL |
 | **Frontend** | — | React PWA |
 | **Auth** | — | Username/password · Google OAuth · Opaque database-backed sessions |
@@ -57,15 +57,16 @@ With Docker and Docker Compose installed, run this from the repository root:
 docker compose up --build
 ```
 
-The API skeleton exposes [interactive docs](http://localhost:8000/docs). It does not yet have workout endpoints, database migrations, or a frontend.
+The backend has MVP database models, an initial Alembic migration, and request and response schemas for exercises, routines, workout sessions, sets, and user profiles. The [interactive docs](http://localhost:8000/docs) are available, but feature routes, authentication, and the frontend are not implemented yet.
 
 ## 🗺️ Roadmap
 
 - [x] SQLite configuration
-- [ ] Database models (MVP)
-- [ ] Initial Alembic migration
+- [x] Database models (MVP)
+- [x] Initial Alembic migration
+- [x] Schemas for exercises, routines, workout sessions, sets, and user profiles
 - [ ] Username/password and Google OAuth authentication
-- [ ] Routers and schemas: exercises, routines, sessions
+- [ ] API routes for exercises, routines, workout sessions, and user profiles
 - [ ] Frontend bootstrap (PWA)
 - [ ] History, PRs, and per-exercise progress
 - [ ] Migration to PostgreSQL
@@ -79,7 +80,8 @@ These design decisions describe planned behavior:
 - **RPE** is stored as `Numeric(3, 1)`, with one decimal place (for example, `8.5`).
 - **Routines** will be publicly readable, but only their owners will be able to modify them.
 - **Workout sessions** will be private because they contain personal training data.
-- **Routine sets** can store planned reps, weight, and RPE. Starting a routine will create separate workout sets so you can log what you actually did without changing the plan.
+- **Workout duration** is `completed_at - started_at`. The server records `completed_at` when the user finishes the workout; individual sets track only whether they are completed.
+- **Routine sets** can store planned reps, weight, and RPE. A routine needs at least one exercise, and every exercise needs at least one set, even if its targets are blank. Starting a routine will create separate workout sets so you can log what you actually did without changing the plan.
 
 ## 🤝 Contributing
 
