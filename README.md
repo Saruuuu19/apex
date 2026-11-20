@@ -24,7 +24,7 @@ It's also the **project that ties together everything I'm learning**: FastAPI ba
 - 🗂️ **Routines** with planned exercises and sets
 - 🔥 **Workout logging** in real time: reps, weight, and RPE per set
 - 📈 **History and progress**: max weight and volume per exercise
-- 🔐 **Google login** (OAuth) with secure sessions stored in `httpOnly` cookies
+- 🔐 **Sign-in** with username and password or Google, using `HttpOnly` session cookies
 - 📱 **PWA**: install it on your phone and use it at the gym
 
 ## 🧱 Stack
@@ -34,7 +34,7 @@ It's also the **project that ties together everything I'm learning**: FastAPI ba
 | **Backend** | FastAPI · SQLAlchemy · Pydantic · Alembic configuration | Initial database migration |
 | **Database** | SQLite configured | PostgreSQL |
 | **Frontend** | — | React PWA |
-| **Auth** | — | Google OAuth + opaque database-backed sessions |
+| **Auth** | — | Username/password · Google OAuth · Opaque database-backed sessions |
 | **Tooling** | uv · Ruff · Docker | — |
 
 ## 🚀 Getting Started
@@ -64,7 +64,7 @@ The API skeleton exposes [interactive docs](http://localhost:8000/docs). It does
 - [x] SQLite configuration
 - [ ] Database models (MVP)
 - [ ] Initial Alembic migration
-- [ ] Google OAuth authentication
+- [ ] Username/password and Google OAuth authentication
 - [ ] Routers and schemas: exercises, routines, sessions
 - [ ] Frontend bootstrap (PWA)
 - [ ] History, PRs, and per-exercise progress
@@ -76,10 +76,10 @@ The API skeleton exposes [interactive docs](http://localhost:8000/docs). It does
 
 These design decisions describe planned behavior:
 
-- **RPE** will be stored as a scaled integer (8.5 → 85) to avoid precision issues in SQLite.
+- **RPE** is stored as `Numeric(3, 1)`, with one decimal place (for example, `8.5`).
 - **Routines** will be publicly readable, but only their owners will be able to modify them.
 - **Workout sessions** will be private because they contain personal training data.
-- **Starting a routine** will copy its structure into a session and leave reps, weight, and RPE blank for you to fill in at the gym.
+- **Routine sets** can store planned reps, weight, and RPE. Starting a routine will create separate workout sets so you can log what you actually did without changing the plan.
 
 ## 🤝 Contributing
 

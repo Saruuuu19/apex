@@ -21,3 +21,7 @@ htmlcov/
 *.sqlite-*
 *.sqlite3
 *.sqlite3-*
+
+# Personal development
+/DEV.md
+/AGENTS.md
