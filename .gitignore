@@ -1,0 +1,23 @@
+# Python: entornos locales y cachés
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Configuración local (las plantillas sí se versionan)
+.env
+.env.*
+!.env.example
+
+# Bases SQLite locales y archivos auxiliares
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
