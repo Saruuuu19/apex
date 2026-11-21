@@ -57,7 +57,7 @@ With Docker and Docker Compose installed, run this from the repository root:
 docker compose up --build
 ```
 
-The backend has MVP database models, an initial Alembic migration, and request and response schemas for exercises, routines, workout sessions, sets, and user profiles. The [interactive docs](http://localhost:8000/docs) are available, but feature routes, authentication, and the frontend are not implemented yet.
+The backend has MVP database models, Alembic migrations, and request and response schemas for exercises, routines, workout sessions, sets, and user profiles. Session validation is implemented, but sign-in does not issue cookies yet. The [interactive docs](http://localhost:8000/docs) are available, but feature routes and the frontend are not implemented yet.
 
 ## 🗺️ Roadmap
 
